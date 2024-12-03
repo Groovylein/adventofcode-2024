@@ -4,8 +4,8 @@ def transform(inp):
     l_2 = []
     l_inp = inp.strip().split()
     for i in range(0, (len(l_inp)-1), 2):
-        l_1.append(l_inp[i])
-        l_2.append(l_inp[i + 1])
+        l_1.append(int(l_inp[i]))
+        l_2.append(int(l_inp[i + 1]))
     return l_1, l_2
 
 

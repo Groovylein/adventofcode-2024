@@ -12,3 +12,7 @@ def test_input_two_lists():
     assert isinstance(list_2, list)
     assert len(list_1) == 6
     assert len(list_2) == 6
+    for elem in list_1:
+        assert isinstance(elem, int)
+    for elem in list_2:
+        assert isinstance(elem, int)
