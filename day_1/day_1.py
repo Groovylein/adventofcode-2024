@@ -19,7 +19,12 @@ with open('input.txt', 'r') as file:
     inp = file.read()
 list_1, list_2 = transform(inp)
 dist_list = distance_of_elem(list_1, list_2)
-sum = 0
+sum_part_1 = 0
 for elem in dist_list:
-    sum += elem
-print(sum)
+    sum_part_1 += elem
+print(f"Part 1: {sum_part_1}")
+
+sum_part_2 = 0
+for elem in list_1:
+    sum_part_2 += (elem * list_2.count(elem))
+print(f"Part 2: {sum_part_2}")
