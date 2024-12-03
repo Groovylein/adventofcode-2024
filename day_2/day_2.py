@@ -18,9 +18,13 @@ def get_safe_reports(l_of_l):
                 diff = elem - l[i+1]
                 if diff in range(-4, 0):
                     safe = check_order(l, decreasing=False)
+                    if not safe:
+                        safe = check_bad_level(l, decreasing=False)
                     break
                 elif diff in range(1, 4):
                     safe = check_order(l, decreasing=True)
+                    if not safe:
+                        safe = check_bad_level(l, decreasing=True)
                     break
                 else:
                     break
@@ -28,7 +32,17 @@ def get_safe_reports(l_of_l):
             safe_list.append(l)
     return safe_list
 
-def check_order(input_list, decreasing=True):
+def check_bad_level(input_list, decreasing):
+    safe = False
+    for i in range(0, len(input_list)):
+        tmp_list = input_list.copy()
+        tmp_list.pop(i)
+        safe = check_order(tmp_list, decreasing)
+        if safe:
+            return safe
+    return safe
+
+def check_order(input_list, decreasing):
     comp = True
     comp_list = sorted(input_list, reverse=decreasing)
     for i, elem in enumerate(input_list):
@@ -49,4 +63,6 @@ list_of_lists = split_input(inp)
 # print(list_of_lists)
 safe_reports = get_safe_reports(list_of_lists)
 # print(safe_reports)
-print(f"Part 1: {len(safe_reports)}")
+c = [val for val in list_of_lists if val not in safe_reports]
+print(c)
+print(f"Part 2: {len(safe_reports)}")
